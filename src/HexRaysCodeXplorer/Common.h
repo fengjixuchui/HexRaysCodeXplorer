@@ -28,6 +28,19 @@
 #pragma once
 
 #if !defined (__LINUX__) && !defined (__MAC__)
+    #ifdef __MAKEDLL__
+    #  define DLLEXPORT __declspec(dllexport)
+    #else
+    #  define DLLEXPORT __declspec(dllimport)
+    #endif
+#else
+    #define DLLEXPORT
+#endif
+
+
+
+
+#if !defined (__LINUX__) && !defined (__MAC__)
 #pragma warning (disable: 4996 4800 )
 #else
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
@@ -72,6 +85,12 @@
 #include <auto.hpp>
 #include <entry.hpp>
 #include <demangle.hpp>
+#include <typeinf.hpp>
+#include <moves.hpp>
+#include <bytes.hpp>
+#include <unordered_map>
+
+
 #ifdef __NT__
 #pragma warning(pop)
 #endif // __NT__
